@@ -1,17 +1,16 @@
 ************OS LINUX************
 
 $ lsb_release -a
-$ sudo hostnamectl
-$ ping raspberrypi.local
+$ hostnamectl
+$ ping raspberrypinode.local
 
-$ timedatectl (show)
+$ timedatectl
 $ timedatectl timesync-status
 $ timedatectl show-timesync
 
-$ lsblk
 $ df -h
 $ sudo hdparm -t --direct /dev/sda1
-$ sudo hdparm -i /dev/sda
+$ sudo hdparm -I /dev/sda
 
 $ sudo ufw status
 $ sudo netplan get
@@ -24,11 +23,11 @@ $ uptime
 $ sudo sensors
 
 $ raspibolt
+$ glances
 
 ************TOR************
 $ sudo systemctl status tor
-$ sudo systemctl status tor.service
-
+$ sudo nyx
 
 ************BITCOIN CORE************
 $ bitcoind --version
