@@ -17,5 +17,6 @@ $ sudo nano /etc/tor/torrc
 -Restart Tor and get your connection address.
 
 $ sudo systemctl restart tor
+
 $ sudo cat /var/lib/tor/hidden_service_ssh/hostname
 > gwdllz5g7vky2q4gr45zGuvopjzf33czreca3a3exosftx72ekppkuqd.onion
