@@ -1,0 +1,39 @@
+************OS LINUX************
+
+$ lsb_release -a
+$ sudo hostnamectl
+$ ping raspberrypi.local
+
+$ timedatectl (show)
+$ timedatectl timesync-status
+$ timedatectl show-timesync
+
+$ lsblk
+$ df -h
+$ sudo hdparm -t --direct /dev/sda1
+$ sudo hdparm -i /dev/sda
+
+$ sudo ufw status
+$ sudo netplan get
+
+$ service --status-all
+
+
+
+
+
+
+
+************TOR************
+$ sudo systemctl status tor
+
+
+************BITCOIN CORE************
+$ sudo systemctl status bitcoind
+$ sudo tail -f /mnt/ext/bitcoin/debug.log
+
+
+************ELECTRS************
+
+
+************RPC EXPLORER************
