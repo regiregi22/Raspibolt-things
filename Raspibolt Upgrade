@@ -1,0 +1,131 @@
+===================================BACKUP BEFORE UPGRADE========================================
+	-Backup essential files on external hard disk
+$ sudo su - bitcoin
+$ mkdir backup_hdd
+$ tar cvf backup_hdd/bitcoin.tar .bitcoin/bitcoin.conf .bitcoin/wallet.dat .bitcoin/peers.dat .bitcoin/banlist.dat
+$ tar cvf backup_hdd/lnd.tar .lnd/lnd.conf
+$ exit
+
+	-Shutdown system
+$ sudo shutdown now
+
+	-Remove the microSD card and connect it to your regular computer
+	-Follow this guide to create a disk image: https://lifehacker.com/how-to-clone-your-raspberry-pi-sd-card-for-super-easy-r-1261113524
+	
+
+===================================LINUX UPGRADE========================================
+	Stop existing services
+	-To reduce the potential for data corruption, we don’t want any of the services running while working through this upgrade.
+	-Stop and disable each service
+  $ sudo systemctl stop btcrpcexplorer
+  $ sudo systemctl stop electrs
+  $ sudo systemctl stop lnd
+  $ sudo systemctl stop bitcoind
+  $ sudo systemctl disable btcrpcexplorer.service
+  $ sudo systemctl disable electrs.service
+  $ sudo systemctl disable lnd.service
+  $ sudo systemctl disable bitcoind.service
+
+	Software update
+	-It is important to keep the system up-to-date with security patches and application updates. The “Advanced Packaging Tool” (apt) makes this easy.
+
+	-Do this regularly every few months to get security related updates.
+$ sudo apt update
+$ sudo apt full-upgrade
+$ sudo reboot
+$ sudo apt update
+$ sudo apt autoremove
+
+	-Make sure that all necessary software packages are installed:
+$ sudo apt install htop git curl bash-completion jq qrencode dphys-swapfile hdparm --install-recommends
+
+	-Reboot:
+$ sudo reboot
+
+	-Enable and start the services
+$ sudo systemctl enable bitcoind.service
+$ sudo systemctl enable lnd.service
+$ sudo systemctl enable electrs.service
+$ sudo systemctl enable btcrpcexplorer.service
+$ sudo systemctl start bitcoind
+$ sudo systemctl start lnd
+$ sudo systemctl start electrs
+$ sudo systemctl start btcrpcexplorer
+
+	-Wait for some minutes for the services to stabilize, check UP and sync:
+$ raspibolt
+
+
+===================================BITCOIN CORE UPGRADE========================================
+	The latest release can be found on the Github page of the Bitcoin Core project. Make sure to read the Release Notes, as these can include important upgrade information. 
+	https://github.com/bitcoin/bitcoin/releases
+
+	-As “admin” user, stop the lnd and bitcoind system units
+$ sudo systemctl stop lnd
+$ sudo systemctl stop bitcoind
+
+	-Download, verify, extract and install the Bitcoin Core binaries as described in the Bitcoin section of this guide.
+	-Take care choosing ARM32 or ARM64 bits.
+	https://stadicus.github.io/RaspiBolt/raspibolt_30_bitcoin.html
+
+	-Start the bitcoind and lnd system units 
+$ sudo systemctl enable bitcoind.service
+$ sudo reboot
+
+$ sudo systemctl start bitcoind 
+$ sudo systemctl start lnd
+
+
+===================================ELECTRS UPGRADE========================================
+
+	-Updating a new release should be straight-forward, but make sure to check out the release notes first.
+	https://github.com/romanz/electrs/releases
+	https://github.com/romanz/electrs/blob/master/RELEASE-NOTES.md
+
+	-With user “admin”, check what version you have vs that available as lastest release.
+$ cd /home/admin/rust
+$ currentelectrs=$(head -n 1 electrs/RELEASE-NOTES.md | awk '{print "v"$2}')
+$ echo "Current = ${currentelectrs}"
+$ electrsgit=$(curl -s https://api.github.com/repos/romanz/electrs/tags | jq -r '.[0].name')
+$ echo "Available = ${electrsgit}"
+
+
+	-If the available version is newer, then you can proceed with the following
+$ # backup the current one
+$ mv electrs electrs-v${currentelectrs};
+
+$ # clone the most recent tagged version
+$ git clone --branch ${electrsgit} https://github.com/romanz/electrs.git
+
+$ # Build it
+$ cd electrs
+$ cargo build --locked --release
+
+$ # Stop the service, copy the binary over, and start the service back up
+$ sudo systemctl stop electrs
+$ sudo cp ./target/release/electrs /usr/local/bin/
+$ sudo systemctl start electrs
+
+
+
+===================================BTC RPC EXPLORER UPGRADE========================================
+
+	-Updating to a new release should be straight-forward, but make sure to check out the change log first.
+	https://github.com/janoside/btc-rpc-explorer/releases
+	https://github.com/janoside/btc-rpc-explorer/blob/master/CHANGELOG.md
+
+	-From user “admin”, stop the service and open a “btcrpcexplorer” user session.
+$ sudo systemctl stop btcrpcexplorer
+$ sudo su - btcrpcexplorer
+
+	-Fetch the latest GitHub repository information and check out the new release:
+$ cd ~/btc-rpc-explorer
+$ git fetch
+$ git checkout v3.2.0
+$ git stash (si da error el checkout)
+$ npm install
+$ npm audit fix
+$ exit
+
+	Start the service again.
+$ sudo systemctl start btcrpcexplorer
