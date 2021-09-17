@@ -33,7 +33,6 @@ $ sudo nyx
 $ bitcoind --version
 $ sudo systemctl status bitcoind
 $ sudo tail -f /mnt/ext/bitcoin/debug.log
-
 $ bitcoin-cli etc etc etc
 $ bitcoin-cli getblockchaininfo
 $ bitcoin-cli getnetworkinfo
@@ -44,15 +43,9 @@ $ bitcoin-cli -addrinfo
 
 ************ELECTRS************
 $ sudo systemctl status electrs
-$ sudo systemctl status electrs.service
-
 $ sudo journalctl -f -u electrs
-
 $ sudo nginx -t
-
 
 ************RPC EXPLORER************
 $ sudo systemctl status btcrpcexplorer
-$ sudo systemctl status btcrpcexplorer.service
-
 $ sudo journalctl -f -u btcrpcexplorer
