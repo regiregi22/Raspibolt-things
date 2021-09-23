@@ -2,8 +2,10 @@
 
 $ lsb_release -a
 $ hostnamectl
-$ ping raspibolt2
+$ uname-a
+$ cat /etc/os-release
 
+$ ping raspibolt2
 $ timedatectl
 $ timedatectl timesync-status
 $ timedatectl show-timesync
