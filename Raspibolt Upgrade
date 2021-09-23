@@ -32,13 +32,10 @@ $ sudo shutdown now
 	-Do this regularly every few months to get security related updates.
 $ sudo apt update
 $ sudo apt full-upgrade
-$ sudo reboot
-$ sudo apt update
-$ sudo apt autoremove
-
 	-Make sure that all necessary software packages are installed:
 $ sudo apt install htop git curl bash-completion jq qrencode dphys-swapfile hdparm --install-recommends
-
+$ sudo apt update
+$ sudo apt autoremove
 	-Reboot:
 $ sudo reboot
 
