@@ -1,3 +1,4 @@
+
 ===================================BACKUP BEFORE UPGRADE========================================
 	-Backup essential files on external hard disk
 $ sudo su - bitcoin
