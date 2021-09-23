@@ -44,9 +44,9 @@ $ bitcoin-cli -netinfo 4
 $ bitcoin-cli -addrinfo
 
 ************ELECTRS************
+$ sudo nginx -t
 $ sudo systemctl status electrs
 $ sudo journalctl -f -u electrs
-$ sudo nginx -t
 
 ************RPC EXPLORER************
 $ sudo systemctl status btcrpcexplorer
