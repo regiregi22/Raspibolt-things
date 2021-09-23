@@ -2,7 +2,7 @@
 
 $ lsb_release -a
 $ hostnamectl
-$ ping raspberrypinode.local
+$ ping raspibolt2
 
 $ timedatectl
 $ timedatectl timesync-status
