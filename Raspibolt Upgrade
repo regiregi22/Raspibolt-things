@@ -121,6 +121,7 @@ $ git fetch
 $ git checkout v3.2.0
 $ git stash (si da error el checkout)
 $ npm install
+$ npm fund
 $ npm audit fix
 $ exit
 
