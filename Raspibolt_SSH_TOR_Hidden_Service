@@ -17,4 +17,4 @@ HiddenServicePort 22 127.0.0.1:22
 $ sudo systemctl restart tor
 
 $ sudo cat /var/lib/tor/hidden_service_ssh/hostname
-> gwdllz5g7vky2q4gr45zGuvopjzf33czreca3a3exosftx72ekppkuqd.onion
+> xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.onion
