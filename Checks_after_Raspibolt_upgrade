@@ -28,6 +28,8 @@ $ sudo sensors
 $ raspibolt
 $ glances
 
+$ sudo apt autoremove
+
 ************TOR************
 $ sudo systemctl status tor
 $ sudo nyx
