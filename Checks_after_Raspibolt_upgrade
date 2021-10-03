@@ -5,7 +5,7 @@ $ hostnamectl
 $ uname -a
 $ cat /etc/os-release
 
-$ ping raspibolt2
+$ ping raspibolt
 $ timedatectl
 $ timedatectl timesync-status
 $ timedatectl show-timesync
