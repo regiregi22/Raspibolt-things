@@ -15,7 +15,6 @@ $ sudo hdparm -t --direct /dev/sda1
 $ sudo hdparm -I /dev/sda
 
 $ sudo ufw status
-$ sudo netplan get
 $ ip address show
 
 $ service --status-all
