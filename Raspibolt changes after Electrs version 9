@@ -1,6 +1,6 @@
 Some things need to be changed in the configuracion after latest update on Electrs from version 8 to 9.
 
-## Add to "bitcoin.conf"
+# Add to "bitcoin.conf"
 whitelist=download@127.0.0.1 //Allows Electrs to bypass the "maxuploadtarget=" for local P2P used for Electrs indexing.
 
 ## Add to "electrs.conf"
