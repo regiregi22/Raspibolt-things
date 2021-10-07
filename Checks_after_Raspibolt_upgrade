@@ -4,6 +4,7 @@ $ lsb_release -a
 $ hostnamectl
 $ uname -a
 $ cat /etc/os-release
+$ cat /proc/device-tree/model
 
 $ ping raspibolt
 $ timedatectl
