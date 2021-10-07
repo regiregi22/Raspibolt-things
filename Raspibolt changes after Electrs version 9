@@ -1,18 +1,18 @@
 Some things need to be changed in the configuracion after latest update on Electrs from version 8 to 9.
 
-# Add to "bitcoin.conf"
+// Add to "bitcoin.conf"
 whitelist=download@127.0.0.1 //Allows Electrs to bypass the "maxuploadtarget=" for local P2P used for Electrs indexing.
 
-## Add to "electrs.conf"
+// Add to "electrs.conf"
 daemon_p2p_addr = "127.0.0.1:8333"
 
-## Changes in "electrs.conf"    
+// Changes in "electrs.conf"    
 "cookie =" has to be changed to "auth ="
 "txid_limit =" has to be changed to "index_lookup_limit ="
 "verbose = 4" has to be changed to "verbose = 2" for better performance
 
-## Remove in "electrs.conf"
+// Remove in "electrs.conf"
 Remove unsupported options from configuration (blocks_dir, jsonrpc_import, bulk_index_threads, tx_cache_size_mb, blocktxids_cache_size_mb)
 
-## Upgrade
+// Upgrade
 If upgrading from v8, delete whole mainnet subdirectory within db_dir.
