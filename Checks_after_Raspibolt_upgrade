@@ -31,6 +31,7 @@ $ glances
 $ sudo apt autoremove
 
 ************TOR************
+$ head -n 1 /home/admin/rust/electrs/RELEASE-NOTES.md     //Check current version
 $ sudo systemctl status tor
 $ sudo nyx
 
