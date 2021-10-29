@@ -95,7 +95,7 @@
   $ sudo systemctl disable bitcoind.service
   $ sudo systemctl disable tor.service
   ```
-
+PENDIENTE DESGLOSAR
 	-Download, verify, extract and install the Bitcoin Core binaries as described in the Bitcoin section of this guide.
 	-Take care choosing ARM32 or ARM64 bits.
 	https://stadicus.github.io/RaspiBolt/raspibolt_30_bitcoin.html
@@ -116,44 +116,46 @@
   $ sudo systemctl start btcrpcexplorer
   ```
 
+---
 
-===================================ELECTRS UPGRADE========================================
+** ELECTRS UPGRADE
 
-	-Updating a new release should be straight-forward, but make sure to check out the release notes first.
-	https://github.com/romanz/electrs/releases
-	https://github.com/romanz/electrs/blob/master/RELEASE-NOTES.md
+* [Updating a new release](https://github.com/romanz/electrs/releases) should be straight-forward, but make sure to [check out the release notes first](https://github.com/romanz/electrs/blob/master/RELEASE-NOTES.md).  
 
-	-With user “admin”, check what version you have vs that available as lastest release.
-$ cd /home/admin/rust
-$ currentelectrs=$(head -n 1 electrs/RELEASE-NOTES.md | awk '{print "v"$2}')
-$ echo "Current = ${currentelectrs}"
-$ electrsgit=$(curl -s https://api.github.com/repos/romanz/electrs/tags | jq -r '.[0].name')
-$ echo "Available = ${electrsgit}"
+* Log in as user "admin".  
 
+* Check what version you have vs that available as lastest release:  
+  ```sh
+  $ cd /home/admin/rust
+  $ currentelectrs=$(head -n 1 electrs/RELEASE-NOTES.md | awk '{print "v"$2}')
+  $ echo "Current = ${currentelectrs}"
+  $ electrsgit=$(curl -s https://api.github.com/repos/romanz/electrs/tags | jq -r '.[0].name')
+  $ echo "Available = ${electrsgit}"
+  ```
 
-	-If the available version is newer, then you can proceed with the following
-$ # backup the current one
-$ mv electrs electrs-v${currentelectrs};
+* If the available version is newer, then you can proceed with the following:
+  ```sh
+  $ # backup the current one
+  $ mv electrs electrs-v${currentelectrs};
 
-$ # clone the most recent tagged version
-$ git clone --branch ${electrsgit} https://github.com/romanz/electrs.git
+  $ # clone the most recent tagged version
+  $ git clone --branch ${electrsgit} https://github.com/romanz/electrs.git
 
-$ # Build it
-$ cd electrs
-$ cargo build --locked --release
+  $ # Build it
+  $ cd electrs
+  $ cargo build --locked --release
 
-$ # Stop the service, copy the binary over, and start the service back up
-$ sudo systemctl stop electrs
-$ sudo cp ./target/release/electrs /usr/local/bin/
-$ sudo systemctl start electrs
+  $ # Stop the service, copy the binary over, and start the service back up
+  $ sudo systemctl stop electrs
+  $ sudo cp ./target/release/electrs /usr/local/bin/
+  $ sudo systemctl start electrs
+  ```
 
+---
 
+** BTC RPC EXPLORER UPGRADE  
 
-===================================BTC RPC EXPLORER UPGRADE========================================
-
-	-Updating to a new release should be straight-forward, but make sure to check out the change log first.
-	https://github.com/janoside/btc-rpc-explorer/releases
-	https://github.com/janoside/btc-rpc-explorer/blob/master/CHANGELOG.md
+* [Updating to a new release](https://github.com/janoside/btc-rpc-explorer/releases) should be straight-forward, but make sure to [check out the change log first](https://github.com/janoside/btc-rpc-explorer/blob/master/CHANGELOG.md).
 
 	-From user “admin”, stop the service and open a “btcrpcexplorer” user session.
 $ sudo systemctl stop btcrpcexplorer
