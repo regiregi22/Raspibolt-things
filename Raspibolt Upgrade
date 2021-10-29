@@ -60,11 +60,13 @@ $ sudo systemctl start bitcoind
 $ sudo systemctl start lnd
 $ sudo systemctl start electrs
 $ sudo systemctl start btcrpcexplorer
-	-Reboot:
+
+	-Reboot, just to check everything starts up after a reboot:
 $ sudo reboot
 
 	-Wait for some minutes for the services to stabilize, check services are up and sync:
 $ raspibolt
+
 
 
 ===================================BITCOIN CORE UPGRADE========================================
