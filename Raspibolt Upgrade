@@ -22,10 +22,12 @@ $ sudo shutdown now
   $ sudo systemctl stop electrs
   $ sudo systemctl stop lnd
   $ sudo systemctl stop bitcoind
+  $ sudo systemctl stop tor
   $ sudo systemctl disable btcrpcexplorer.service
   $ sudo systemctl disable electrs.service
   $ sudo systemctl disable lnd.service
   $ sudo systemctl disable bitcoind.service
+  $ sudo systemctl disable tor.service
 
 	Software update
 	-It is important to keep the system up-to-date with security patches and application updates. The “Advanced Packaging Tool” (apt) makes this easy.
