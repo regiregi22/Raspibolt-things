@@ -37,17 +37,18 @@ $ sudo shutdown now
   $sudo rpi-eeprom-update
   
 * If there is, enter the folowing command ```sudo raspi-config```, then choose ```8 Update```. Then enter the folowing command ```sudo raspi-config```, then choose ```6 Advanced options```, then ```A7 Boot ROM Version``` and then ```E1 Latest```, to update the Bootloader of the Raspberry. It will reboot the system afterwards.  
+* Wait 5 minutes to give it enough time to install the new bootloader.
 * Restart the Raspberry once again after installing the bootloader, just to be sure ```sudo reboot```.  
 
 $ sudo apt update
 $ sudo apt --fix-broken install
 $ sudo apt full-upgrade
 	-Make sure that all necessary software packages are installed:
-$ sudo apt install htop git curl bash-completion jq qrencode dphys-swapfile hdparm --install-recommends
-$ sudo apt --fix-broken install
-$ sudo apt autoremove
+$ sudo apt install raspi-config rpi-eeprom avahi-daemon nyx iftop htop git curl bash-completion jq qrencode dphys-swapfile hdparm --install-recommends
 	-Reboot:
 $ sudo reboot
+$ sudo apt --fix-broken install
+$ sudo apt autoremove
 
 	-Enable and start the services
 $ sudo systemctl enable tor.service
