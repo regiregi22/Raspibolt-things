@@ -60,8 +60,10 @@ $ sudo systemctl start bitcoind
 $ sudo systemctl start lnd
 $ sudo systemctl start electrs
 $ sudo systemctl start btcrpcexplorer
+	-Reboot:
+$ sudo reboot
 
-	-Wait for some minutes for the services to stabilize, check UP and sync:
+	-Wait for some minutes for the services to stabilize, check services are up and sync:
 $ raspibolt
 
 
