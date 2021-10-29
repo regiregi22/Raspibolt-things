@@ -26,12 +26,8 @@ $ uptime
 $ sudo vcgencmd measure_temp
 
 $ raspibolt
-$ glances
-
-$ sudo apt autoremove
 
 ************TOR************
-$ head -n 1 /home/admin/rust/electrs/RELEASE-NOTES.md     //Check current version
 $ sudo systemctl status tor
 $ sudo nyx
 
@@ -47,6 +43,7 @@ $ bitcoin-cli -netinfo 4
 $ bitcoin-cli -addrinfo
 
 ************ELECTRS************
+$ head -n 1 /home/admin/rust/electrs/RELEASE-NOTES.md     //Check current version
 $ sudo nginx -t
 $ sudo systemctl status electrs
 $ sudo journalctl -f -u electrs
