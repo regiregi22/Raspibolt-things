@@ -30,11 +30,13 @@ $ raspibolt
 ************TOR************
 $ tor --version
 $ sudo systemctl status tor
+$ sudo journalctl -f -u tor
 $ sudo nyx
 
 ************BITCOIN CORE************
 $ bitcoind --version
 $ sudo systemctl status bitcoind
+$ sudo journalctl -f -u bitcoind
 $ sudo tail -f /mnt/ext/bitcoin/debug.log
 $ bitcoin-cli getblockchaininfo
 $ bitcoin-cli getnetworkinfo
