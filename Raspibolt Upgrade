@@ -133,7 +133,22 @@ PENDIENTE DESGLOSAR
   $ echo "Available = ${electrsgit}"
   ```
 
-* If the available version is newer, then you can proceed with the following:
+* If the available version is newer, then you can proceed with the following.  
+
+* Stop and disable each service:  
+  ```sh
+  $ sudo systemctl stop btcrpcexplorer
+  $ sudo systemctl stop electrs
+  $ sudo systemctl stop lnd
+  $ sudo systemctl stop bitcoind
+  $ sudo systemctl stop tor
+  $ sudo systemctl disable btcrpcexplorer.service
+  $ sudo systemctl disable electrs.service
+  $ sudo systemctl disable lnd.service
+  $ sudo systemctl disable bitcoind.service
+  $ sudo systemctl disable tor.service
+  ```
+  
   ```sh
   $ # backup the current one
   $ mv electrs electrs-v${currentelectrs};
@@ -148,9 +163,21 @@ PENDIENTE DESGLOSAR
   $ # Stop the service, copy the binary over, and start the service back up
   $ sudo systemctl stop electrs
   $ sudo cp ./target/release/electrs /usr/local/bin/
-  $ sudo systemctl start electrs
   ```
-
+  
+* Start and enable each service:  
+  ```sh
+  $ sudo systemctl enable tor.service
+  $ sudo systemctl enable bitcoind.service
+  $ sudo systemctl enable lnd.service
+  $ sudo systemctl enable electrs.service
+  $ sudo systemctl enable btcrpcexplorer.service
+  $ sudo systemctl start tor
+  $ sudo systemctl start bitcoind
+  $ sudo systemctl start lnd
+  $ sudo systemctl start electrs
+  $ sudo systemctl start btcrpcexplorer
+  ```
 ---
 
 ** BTC RPC EXPLORER UPGRADE  
@@ -158,23 +185,39 @@ PENDIENTE DESGLOSAR
 * [Updating to a new release](https://github.com/janoside/btc-rpc-explorer/releases) should be straight-forward, but make sure to [check out the change log first](https://github.com/janoside/btc-rpc-explorer/blob/master/CHANGELOG.md).
 
 * Log in as user "admin".  
-* Stop the service and open a “btcrpcexplorer” user session.
+
+* Stop and disable each service:  
   ```sh
   $ sudo systemctl stop btcrpcexplorer
+  $ sudo systemctl stop electrs
+  $ sudo systemctl stop lnd
+  $ sudo systemctl stop bitcoind
+  $ sudo systemctl stop tor
+  $ sudo systemctl disable btcrpcexplorer.service
+  $ sudo systemctl disable electrs.service
+  $ sudo systemctl disable lnd.service
+  $ sudo systemctl disable bitcoind.service
+  $ sudo systemctl disable tor.service
+  ```
+  
+* Open a “btcrpcexplorer” user session.
+  ```sh
   $ sudo su - btcrpcexplorer
   ```
   
-* Fetch the latest GitHub repository information and check out the new release:
+* Fetch the latest GitHub repository information and check out [the newest release](https://github.com/janoside/btc-rpc-explorer/releases):
   ```sh
   # Get the latest version:
   $ cd ~/btc-rpc-explorer
   $ git fetch
   $ git checkout v3.2.0
   ```
+  
   ```sh  
   # If the checkout gives an error, enter:
   $ git stash
   ```
+  
   ```sh
   # Install the new version:
   $ npm install
@@ -183,7 +226,16 @@ PENDIENTE DESGLOSAR
   $ exit
   ```
   
-* Start the service again:
+* Start and enable each service:  
   ```sh
+  $ sudo systemctl enable tor.service
+  $ sudo systemctl enable bitcoind.service
+  $ sudo systemctl enable lnd.service
+  $ sudo systemctl enable electrs.service
+  $ sudo systemctl enable btcrpcexplorer.service
+  $ sudo systemctl start tor
+  $ sudo systemctl start bitcoind
+  $ sudo systemctl start lnd
+  $ sudo systemctl start electrs
   $ sudo systemctl start btcrpcexplorer
   ```
