@@ -31,8 +31,13 @@ $ sudo shutdown now
 
 	Software update
 	-It is important to keep the system up-to-date with security patches and application updates. The “Advanced Packaging Tool” (apt) makes this easy.
-
 	-Do this regularly every few months to get security related updates.
+	
+* Check if there is any firmware update:
+  $sudo rpi-eeprom-update
+  
+* If there is, enter the folowing command ```sudo raspi-config```, then choose ```8 Update```. Then enter the folowing command ```sudo raspi-config```, then choose ```6 Advanced options```, then ```A7 Boot ROM Version``` and then ```E1 Latest```, to update the Bootloader of the Raspberry. It will reboot the system afterwards.  
+
 $ sudo apt update
 $ sudo apt --fix-broken install
 $ sudo apt full-upgrade
@@ -46,10 +51,12 @@ $ sudo apt --fix-broken install
 $ sudo reboot
 
 	-Enable and start the services
+$ sudo systemctl enable tor.service
 $ sudo systemctl enable bitcoind.service
 $ sudo systemctl enable lnd.service
 $ sudo systemctl enable electrs.service
 $ sudo systemctl enable btcrpcexplorer.service
+$ sudo systemctl start tor
 $ sudo systemctl start bitcoind
 $ sudo systemctl start lnd
 $ sudo systemctl start electrs
