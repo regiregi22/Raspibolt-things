@@ -1,4 +1,5 @@
-*** BACKUP BEFORE UPGRADE
+** BACKUP BEFORE UPGRADE
+* Log in as user "admin".  
 * Backup essential files on external hard disk  
   ```sh
   $ sudo su - bitcoin
@@ -12,13 +13,17 @@
   $ sudo shutdown now
   ```
 * Remove the microSD card and connect it to your regular computer  
-* Follow [this guide to create a disk image:](https://lifehacker.com/how-to-clone-your-raspberry-pi-sd-card-for-super-easy-r-1261113524).
-	
+* Follow [this guide to create a disk image:](https://lifehacker.com/how-to-clone-your-raspberry-pi-sd-card-for-super-easy-r-1261113524).  
 
-===================================LINUX UPGRADE========================================
-** Stop existing services
-	-To reduce the potential for data corruption, we don’t want any of the services running while working through this upgrade.
-	-Stop and disable each service
+---
+
+** LINUX UPGRADE  
+* Log in as user "admin".  
+* It is important to keep the system up-to-date with security patches and application updates. The “Advanced Packaging Tool” (apt) makes this easy. Do this regularly every few months to get security related updates.  
+* To reduce the potential for data corruption, we don’t want any of the services running while working through this upgrade.  
+
+* Stop and disable each service:  
+  ```sh
   $ sudo systemctl stop btcrpcexplorer
   $ sudo systemctl stop electrs
   $ sudo systemctl stop lnd
@@ -29,66 +34,87 @@
   $ sudo systemctl disable lnd.service
   $ sudo systemctl disable bitcoind.service
   $ sudo systemctl disable tor.service
-
-	Software update
-	-It is important to keep the system up-to-date with security patches and application updates. The “Advanced Packaging Tool” (apt) makes this easy.
-	-Do this regularly every few months to get security related updates.
-	
-* Check if there is any firmware update:
-  $sudo rpi-eeprom-update
+  ```
   
-* If there is, enter the folowing command ```sudo raspi-config```, then choose ```8 Update```. Then enter the folowing command ```sudo raspi-config```, then choose ```6 Advanced options```, then ```A7 Boot ROM Version``` and then ```E1 Latest```, to update the Bootloader of the Raspberry. It will reboot the system afterwards.  
+* Enter the folowing command ```sudo raspi-config```, then choose ```8 Update```.
+	
+* Check if there is any bootloader update:  
+  ```sh
+  $ sudo rpi-eeprom-update
+  ```
+* If there is any bootloader update, enter the folowing command ```sudo raspi-config```, then choose ```6 Advanced options```, then ```A7 Boot ROM Version``` and then ```E1 Latest```, to update the Bootloader of the Raspberry. It will t the system afterwards.    
 * Wait 5 minutes to give it enough time to install the new bootloader.
-* Restart the Raspberry once again after installing the bootloader, just to be sure ```sudo reboot```.  
+* Restart the Raspberry once again after installing the bootloader, just to be sure: ```sudo reboot```.  
 
-$ sudo apt update
-$ sudo apt --fix-broken install
-$ sudo apt full-upgrade
-	-Make sure that all necessary software packages are installed:
-$ sudo apt install raspi-config rpi-eeprom avahi-daemon nyx iftop htop git curl bash-completion jq qrencode dphys-swapfile hdparm --install-recommends
-	-Reboot:
-$ sudo reboot
-$ sudo apt --fix-broken install
-$ sudo apt autoremove
+* Install system updates and reboot:
+  ```sh
+  $ sudo apt update
+  $ sudo apt --fix-broken install
+  $ sudo apt full-upgrade
+  $ sudo apt install raspi-config rpi-eeprom avahi-daemon nyx iftop htop git curl bash-completion jq qrencode dphys-swapfile hdparm --install-recommends
+  $ sudo reboot
+  $ sudo apt --fix-broken install
+  $ sudo apt autoremove
+  ```
+  
+* Start and enable each service:  
+  ```sh
+  $ sudo systemctl enable tor.service
+  $ sudo systemctl enable bitcoind.service
+  $ sudo systemctl enable lnd.service
+  $ sudo systemctl enable electrs.service
+  $ sudo systemctl enable btcrpcexplorer.service
+  $ sudo systemctl start tor
+  $ sudo systemctl start bitcoind
+  $ sudo systemctl start lnd
+  $ sudo systemctl start electrs
+  $ sudo systemctl start btcrpcexplorer
+  ```
 
-	-Enable and start the services
-$ sudo systemctl enable tor.service
-$ sudo systemctl enable bitcoind.service
-$ sudo systemctl enable lnd.service
-$ sudo systemctl enable electrs.service
-$ sudo systemctl enable btcrpcexplorer.service
-$ sudo systemctl start tor
-$ sudo systemctl start bitcoind
-$ sudo systemctl start lnd
-$ sudo systemctl start electrs
-$ sudo systemctl start btcrpcexplorer
+* Reboot the system, just to check everything starts up after a reboot: ```sudo reboot```.  
 
-	-Reboot, just to check everything starts up after a reboot:
-$ sudo reboot
+* Wait for some minutes for the services to stabilize, check services are up and sync: ```raspibolt```.  
 
-	-Wait for some minutes for the services to stabilize, check services are up and sync:
-$ raspibolt
+---
 
+** BITCOIN CORE UPGRADE
+* The latest release can be found on the [Github page of the Bitcoin Core project](https://github.com/bitcoin/bitcoin/releases). Make sure to read the Release Notes, as these can include important upgrade information.  
 
+* Log in as user "admin".  
 
-===================================BITCOIN CORE UPGRADE========================================
-	The latest release can be found on the Github page of the Bitcoin Core project. Make sure to read the Release Notes, as these can include important upgrade information. 
-	https://github.com/bitcoin/bitcoin/releases
-
-	-As “admin” user, stop the lnd and bitcoind system units
-$ sudo systemctl stop lnd
-$ sudo systemctl stop bitcoind
+* Stop and disable each service:  
+  ```sh
+  $ sudo systemctl stop btcrpcexplorer
+  $ sudo systemctl stop electrs
+  $ sudo systemctl stop lnd
+  $ sudo systemctl stop bitcoind
+  $ sudo systemctl stop tor
+  $ sudo systemctl disable btcrpcexplorer.service
+  $ sudo systemctl disable electrs.service
+  $ sudo systemctl disable lnd.service
+  $ sudo systemctl disable bitcoind.service
+  $ sudo systemctl disable tor.service
+  ```
 
 	-Download, verify, extract and install the Bitcoin Core binaries as described in the Bitcoin section of this guide.
 	-Take care choosing ARM32 or ARM64 bits.
 	https://stadicus.github.io/RaspiBolt/raspibolt_30_bitcoin.html
 
-	-Start the bitcoind and lnd system units 
-$ sudo systemctl enable bitcoind.service
-$ sudo reboot
+* Reboot the system: ```sudo reboot```.  
 
-$ sudo systemctl start bitcoind 
-$ sudo systemctl start lnd
+* Start and enable each service:  
+  ```sh
+  $ sudo systemctl enable tor.service
+  $ sudo systemctl enable bitcoind.service
+  $ sudo systemctl enable lnd.service
+  $ sudo systemctl enable electrs.service
+  $ sudo systemctl enable btcrpcexplorer.service
+  $ sudo systemctl start tor
+  $ sudo systemctl start bitcoind
+  $ sudo systemctl start lnd
+  $ sudo systemctl start electrs
+  $ sudo systemctl start btcrpcexplorer
+  ```
 
 
 ===================================ELECTRS UPGRADE========================================
