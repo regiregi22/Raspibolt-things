@@ -45,9 +45,7 @@ $ sudo apt full-upgrade
 	-Make sure that all necessary software packages are installed:
 $ sudo apt install htop git curl bash-completion jq qrencode dphys-swapfile hdparm --install-recommends
 $ sudo apt --fix-broken install
-$ sudo apt update
 $ sudo apt autoremove
-$ sudo apt --fix-broken install
 	-Reboot:
 $ sudo reboot
 
