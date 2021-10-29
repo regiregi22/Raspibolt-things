@@ -78,7 +78,7 @@
 ---
 
 ** BITCOIN CORE UPGRADE
-* The latest release can be found on the [Github page of the Bitcoin Core project](https://github.com/bitcoin/bitcoin/releases). Make sure to read the Release Notes, as these can include important upgrade information.  
+* [Updating to a new release](https://github.com/bitcoin/bitcoin/releases) should be straight-forward, but make sure to [check out the change log first](https://github.com/bitcoin/bitcoin/tree/master/doc/release-notes).  
 
 * Log in as user "admin".  
 
@@ -120,7 +120,7 @@ PENDIENTE DESGLOSAR
 
 ** ELECTRS UPGRADE
 
-* [Updating a new release](https://github.com/romanz/electrs/releases) should be straight-forward, but make sure to [check out the release notes first](https://github.com/romanz/electrs/blob/master/RELEASE-NOTES.md).  
+* [Updating to a new release](https://github.com/romanz/electrs/releases) should be straight-forward, but make sure to [check out the change log first](https://github.com/romanz/electrs/blob/master/RELEASE-NOTES.md).  
 
 * Log in as user "admin".  
 
