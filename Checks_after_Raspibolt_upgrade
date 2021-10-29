@@ -28,6 +28,7 @@ $ sudo vcgencmd measure_temp
 $ raspibolt
 
 ************TOR************
+$ tor --version
 $ sudo systemctl status tor
 $ sudo nyx
 
