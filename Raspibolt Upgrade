@@ -157,19 +157,33 @@ PENDIENTE DESGLOSAR
 
 * [Updating to a new release](https://github.com/janoside/btc-rpc-explorer/releases) should be straight-forward, but make sure to [check out the change log first](https://github.com/janoside/btc-rpc-explorer/blob/master/CHANGELOG.md).
 
-	-From user “admin”, stop the service and open a “btcrpcexplorer” user session.
-$ sudo systemctl stop btcrpcexplorer
-$ sudo su - btcrpcexplorer
-
-	-Fetch the latest GitHub repository information and check out the new release:
-$ cd ~/btc-rpc-explorer
-$ git fetch
-$ git checkout v3.2.0
-$ git stash (si da error el checkout)
-$ npm install
-$ npm fund
-$ npm audit fix
-$ exit
-
-	Start the service again.
-$ sudo systemctl start btcrpcexplorer
+* Log in as user "admin".  
+* Stop the service and open a “btcrpcexplorer” user session.
+  ```sh
+  $ sudo systemctl stop btcrpcexplorer
+  $ sudo su - btcrpcexplorer
+  ```
+  
+* Fetch the latest GitHub repository information and check out the new release:
+  ```sh
+  # Get the latest version:
+  $ cd ~/btc-rpc-explorer
+  $ git fetch
+  $ git checkout v3.2.0
+  ```
+  ```sh  
+  # If the checkout gives an error, enter:
+  $ git stash
+  ```
+  ```sh
+  # Install the new version:
+  $ npm install
+  $ npm fund
+  $ npm audit fix
+  $ exit
+  ```
+  
+* Start the service again:
+  ```sh
+  $ sudo systemctl start btcrpcexplorer
+  ```
