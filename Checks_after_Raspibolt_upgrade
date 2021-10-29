@@ -23,7 +23,7 @@ $ free -m
 $ top
 $ htop
 $ uptime
-$ sudo sensors
+$ sudo vcgencmd measure_temp
 
 $ raspibolt
 $ glances
