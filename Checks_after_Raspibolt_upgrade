@@ -5,6 +5,7 @@ $ hostnamectl
 $ uname -a
 $ cat /etc/os-release
 $ cat /proc/device-tree/model
+$ cat /proc/cpuinfo
 
 $ ping raspibolt
 $ timedatectl
