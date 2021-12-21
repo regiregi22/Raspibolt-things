@@ -5,6 +5,7 @@ whitelist=download@127.0.0.1  //Allows Electrs to bypass the "maxuploadtarget=" 
 
 // Add to "electrs.conf"
 daemon_p2p_addr = "127.0.0.1:8333"  //Use p2p method for indexing Electrs database.
+log_filters = "INFO"
 
 // Changes in "electrs.conf"    
 "cookie =" has to be changed to "auth ="  //Command deprecated.
