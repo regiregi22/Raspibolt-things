@@ -39,12 +39,14 @@ $ bitcoind --version
 $ sudo systemctl status bitcoind
 $ sudo journalctl -f -u bitcoind
 $ sudo tail -f /mnt/ext/bitcoin/debug.log
-$ bitcoin-cli getblockchaininfo
-$ bitcoin-cli getnetworkinfo
-$ bitcoin-cli getconnectioncount
-$ bitcoin-cli getnettotals
-$ bitcoin-cli -netinfo 4
-$ bitcoin-cli -addrinfo
+
+$ sudo su - bitcoin (needed for the next 6 commands)
+  $ bitcoin-cli getblockchaininfo
+  $ bitcoin-cli getnetworkinfo
+  $ bitcoin-cli getconnectioncount
+  $ bitcoin-cli getnettotals
+  $ bitcoin-cli -netinfo 4
+  $ bitcoin-cli -addrinfo
 
 ************ELECTRS************
 $ head -n 1 /home/admin/rust/electrs/RELEASE-NOTES.md     //Check current version
