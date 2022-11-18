@@ -98,7 +98,7 @@
 PENDIENTE DESGLOSAR
 	-Download, verify, extract and install the Bitcoin Core binaries as described in the Bitcoin section of this guide.
 	-Take care choosing ARM32 or ARM64 bits.
-	https://stadicus.github.io/RaspiBolt/raspibolt_30_bitcoin.html
+	https://regiregi22.github.io/RaspiNail/raspibolt_30_bitcoin.html
 
 * Reboot the system: ```sudo reboot```.  
 
