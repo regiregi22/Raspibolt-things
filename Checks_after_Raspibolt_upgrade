@@ -45,6 +45,7 @@ $ sudo su - bitcoin (needed for the next 6 commands)
   $ bitcoin-cli getnetworkinfo
   $ bitcoin-cli getconnectioncount
   $ bitcoin-cli getnettotals
+  $ bitcoin-cli -netinfo
   $ bitcoin-cli -netinfo 4
   $ bitcoin-cli -addrinfo
 
@@ -57,3 +58,8 @@ $ sudo journalctl -f -u electrs
 ************RPC EXPLORER************
 $ sudo systemctl status btcrpcexplorer
 $ sudo journalctl -f -u btcrpcexplorer
+
+************I2P************
+$ sudo systemctl status i2pd
+$ sudo tail -f /var/log/i2pd/i2pd.log
+$ sudo lsof -i -P -n | grep i2pd | grep LISTEN
